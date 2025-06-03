@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Arbitrage Bot Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .dashboard { display: flex; flex-wrap: wrap; }
+        .card { margin: 10px; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .wide { width: 100%; }
+    </style>
+</head>
+<body>
+    <h1>Arbitrage Bot Dashboard</h1>
+    
+    <div class="dashboard">
+        <div class="card">
+            <h3>Current Balance</h3>
+            <p>${{ "%.2f"|format(balance) }}</p>
+        </div>
+        
+        <div class="card">
+            <h3>Total Profit</h3>
+            <p>${{ "%.2f"|format(profit) }}</p>
+        </div>
+        
+        <div class="card">
+            <h3>Max Spread</h3>
+            <p>{{ "%.4f"|format(max_spread) }}%</p>
+        </div>
+        
+        <div class="card wide">
+            <h3>Recent Trades</h3>
+            <table>
+                <tr><th>Buy Price</th><th>Sell Price</th><th>Profit</th></tr>
+                {% for trade in trades %}
+                <tr>
+                    <td>${{ "%.2f"|format(trade['buy_price']) }}</td>
+                    <td>${{ "%.2f"|format(trade['sell_price']) }}</td>
+                    <td>${{ "%.2f"|format(trade['profit']) }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    
+    <script>
+        // Auto-refresh every 5 seconds
+        setTimeout(function(){
+            window.location.reload(1);
+        }, 5000);
+    </script>
+</body>
+</html>
