@@ -29,7 +29,7 @@ class ArbitrageBot:
         self.initial_funds = 500.0
         self.trade_amount = 200.0
         self.min_spread_percent = 0.005
-        self.taker_fee = 0
+        self.taker_fee = 0.1
         self.funds = self.initial_funds
         self.cumulative_profit = 0.0
         self.max_spread = 0.0
