@@ -1,3 +1,4 @@
-pip install flask
-pip install flask-sqlalchemy
-pip install ccxt
+flask
+flask-sqlalchemy
+ccxt
+gunicorn
