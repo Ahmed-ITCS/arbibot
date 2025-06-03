@@ -4,30 +4,121 @@
     <title>Arbitrage Bot Dashboard</title>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        .dashboard { display: flex; flex-wrap: wrap; }
-        .card { margin: 10px; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
-        .wide { width: 100%; }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #f5f7fa;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 2.2em;
+        }
+
+        .dashboard {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            flex: 1;
+            min-width: 200px;
+            max-width: 300px;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            margin: 0 0 10px;
+            color: #2c3e50;
+            font-size: 1.2em;
+        }
+
+        .card p {
+            margin: 0;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #27ae60;
+        }
+
+        .wide {
+            flex: 0 0 100%;
+            max-width: 100%;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: right;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background: #2c3e50;
+            color: white;
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 0.9em;
+        }
+
+        tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        td {
+            color: #34495e;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .card {
+                min-width: 100%;
+                max-width: 100%;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+        }
     </style>
 </head>
 <body>
     <h1>Arbitrage Bot Dashboard</h1>
-    
+
     <div class="dashboard">
         <div class="card">
             <h3>Current Balance</h3>
             <p>${{ "%.2f"|format(balance) }}</p>
         </div>
-        
+
         <div class="card">
             <h3>Total Profit</h3>
             <p>${{ "%.2f"|format(profit) }}</p>
         </div>
-        
+
         <div class="card">
             <h3>Max Spread</h3>
             <p>{{ "%.4f"|format(max_spread) }}%</p>
         </div>
-        
+
         <div class="card wide">
             <h3>Recent Trades</h3>
             <table>
@@ -42,7 +133,7 @@
             </table>
         </div>
     </div>
-    
+
     <script>
         // Auto-refresh every 5 seconds
         setTimeout(function(){
